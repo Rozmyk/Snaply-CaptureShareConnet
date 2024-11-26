@@ -1,0 +1,4 @@
+/* styles.css */
+.input-placeholder::placeholder {
+	color: #dbdbdb;
+}
