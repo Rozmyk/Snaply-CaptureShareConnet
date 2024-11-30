@@ -33,7 +33,7 @@ const LoadingScreen = () => {
 				<Text color={dark ? '#a8a8a8' : '#737373'} fw={500} fz='sm'>
 					from
 				</Text>
-				<Text fw={700} fz='lg'>
+				<Text fw={700} fz='lg' color={dark ? 'white' : 'black'}>
 					Rozmyk
 				</Text>
 			</Flex>

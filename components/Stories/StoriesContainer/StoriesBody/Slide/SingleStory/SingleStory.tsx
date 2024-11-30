@@ -44,7 +44,7 @@ type QueryParams = {
 const SingleStory = ({ isCenterSlide, slideWidth, data, dataIndex, slideIndex, swipeTo }: storyProps) => {
 	const [storyData, setStoryData] = useState<SingleStoryProps[] | null>(null)
 	const [userData, setUserData] = useState<UserProps | null>(null)
-	const [updatedStories, setUpdatedStories] = useState<SingleUpdateStoryProps[] | null>(null)
+	const [updatedStories, setUpdatedStories] = useState<any>(null)
 	const [loading, setLoading] = useState(true)
 	const router = useRouter()
 

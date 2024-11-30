@@ -4,6 +4,7 @@ import UserSuggestion from './UserSuggestion/UserSuggestion'
 import TagSuggestion from './TagSuggestion/TagSuggestion'
 import { Dispatch, SetStateAction } from 'react'
 import { DownloadTagProps } from '../../../types'
+
 type updatedUsersProps = {
 	id: string
 	image: string
@@ -80,7 +81,19 @@ const InputMention = ({
 			},
 		},
 	}
-
+	console.log(users)
+	function findPostLengthById(id: string | number) {
+		const tag = tags.find(tag => tag.id === id)
+		return tag ? tag.postLength : null
+	}
+	function findUserNameById(id: string | number) {
+		const user = users.find(user => user.id === id)
+		return user ? user.name : null
+	}
+	function findUserImageById(id: string | number) {
+		const user = users.find(user => user.id === id)
+		return user ? user.image : null
+	}
 	return (
 		<MentionsInput
 			allowSuggestionsAboveCursor={true}
@@ -102,14 +115,23 @@ const InputMention = ({
 					setMentionedUsers(prevArray => [...prevArray, `${id}`])
 				}}
 				data={users}
-				renderSuggestion={suggestion => <UserSuggestion suggestion={suggestion} dark={dark} />}
+				renderSuggestion={suggestion => (
+					<UserSuggestion
+						name={findUserNameById(suggestion.id)}
+						image={findUserImageById(suggestion.id)}
+						suggestion={suggestion}
+						dark={dark}
+					/>
+				)}
 			/>
 			<Mention
 				displayTransform={(id, display) => `#${display}`}
 				onAdd={(id, display) => {
 					setMentionedTags(prevArray => [...prevArray, `#${display}`])
 				}}
-				renderSuggestion={suggestion => <TagSuggestion suggestion={suggestion} dark={dark} />}
+				renderSuggestion={suggestion => (
+					<TagSuggestion suggestion={suggestion} postLength={findPostLengthById(suggestion.id)} dark={dark} />
+				)}
 				markup='#__display__'
 				trigger='#'
 				data={tags}

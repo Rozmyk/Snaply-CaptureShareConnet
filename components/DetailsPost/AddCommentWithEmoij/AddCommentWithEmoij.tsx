@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { IconMoodSmile } from '@tabler/icons-react'
-import { Flex, ActionIcon, Popover } from '@mantine/core'
+import { Flex, ActionIcon, Popover, useMantineColorScheme } from '@mantine/core'
 import { v4 as uuidv4 } from 'uuid'
 import data from '@emoji-mart/data'
 import Picker from '@emoji-mart/react'
@@ -14,9 +14,9 @@ import { addRepliesToComment } from '../../../utils/post/addRepliesToComment'
 import { sendNotification } from '../../../utils/user/sendNotification'
 import { useElementSize } from '@mantine/hooks'
 import { Dispatch, SetStateAction } from 'react'
-import InputMention from './InputMention/InputMention'
-import { PostProps, UpdatedTagProps, ReplyToCommentProps } from '../../../types'
 
+import { PostProps, ReplyToCommentProps, DownloadTagProps } from '../../../types'
+import InputMention from '../../InputWithTagsAndUserMention/InputMention/InputMention'
 interface AddCommentWithEmoijProps {
 	postData: PostProps
 	replyData: ReplyToCommentProps | null
@@ -32,13 +32,14 @@ interface customUserProps {
 
 const AddCommentWithEmoij = ({ postData, replyData, setReplyData, maxWidth }: AddCommentWithEmoijProps) => {
 	const [users, setUsers] = useState<customUserProps[] | null>(null)
-	const [tags, setTags] = useState<UpdatedTagProps[] | null>(null)
+	const [tags, setTags] = useState<DownloadTagProps[]>([])
 	const [value, setValue] = useState<string>('')
 	const [cleanText, setCleanText] = useState<string>('')
-	const [mentionedUsers, setMentionedUsers] = useState<string[] | null>(null)
-	const [mentionedTags, setMentionedTags] = useState<string[] | null>(null)
+	const [mentionedUsers, setMentionedUsers] = useState<string[]>([])
+	const [mentionedTags, setMentionedTags] = useState<string[]>([])
 	const { ref, width } = useElementSize()
-
+	const { colorScheme } = useMantineColorScheme()
+	const dark = colorScheme === 'dark'
 	const session = useSession()
 	const userId = session.data?.user?.id
 	useEffect(() => {
@@ -54,8 +55,8 @@ const AddCommentWithEmoij = ({ postData, replyData, setReplyData, maxWidth }: Ad
 	}, [replyData, value])
 	useEffect(() => {
 		if (value == '') {
-			setMentionedUsers(null)
-			setMentionedTags(null)
+			setMentionedUsers([])
+			setMentionedTags([])
 		}
 	}, [value])
 	const handleSubmit = async () => {
@@ -65,8 +66,8 @@ const AddCommentWithEmoij = ({ postData, replyData, setReplyData, maxWidth }: Ad
 
 		setValue('')
 		setCleanText('')
-		setMentionedUsers(null)
-		setMentionedTags(null)
+		setMentionedUsers([])
+		setMentionedTags([])
 		setReplyData(null)
 	}
 	const handleAddComment = async () => {
@@ -219,12 +220,12 @@ const AddCommentWithEmoij = ({ postData, replyData, setReplyData, maxWidth }: Ad
 					{users && (
 						<InputMention
 							singleLine={true}
-							maxWidth={width}
+							inputWidth={width}
 							handleChange={handleChange}
 							tags={tags}
 							users={users}
-							value={value}
-							mentionedTags={mentionedTags}
+							inputValue={value}
+							dark={dark}
 							setMentionedTags={setMentionedTags}
 							setMentionedUsers={setMentionedUsers}
 						/>

@@ -27,7 +27,7 @@ interface UpdatedHighlightsProps {
 }
 const HighlightBodyMobile = ({ allHighlightsData }: HighlightBodyMobileProps) => {
 	const [activeHighlight, setActiveHighlight] = useState<SingleSavedStoryProps | null>(null)
-	const [updatedHighlights, setUpdatedHighlight] = useState<UpdatedHighlightsProps[] | null>(null)
+	const [updatedHighlights, setUpdatedHighlight] = useState<any>(null)
 	const [storiesLoading, setStoriesLoading] = useState<boolean>(true)
 	const [inputValue, setInputValue] = useState<string>('')
 	const [currentStoryImageUrl, setCurrentStoryImageUrl] = useState<string | null>(null)
@@ -140,7 +140,7 @@ const HighlightBodyMobile = ({ allHighlightsData }: HighlightBodyMobileProps) =>
 								}}
 								width={'100%'}
 								storyContainerStyles={{ backgroundColor: 'black', height: '100%', padding: 0, margin: 0 }}
-								stories={updatedHighlights ? updatedHighlights : []}
+								stories={updatedHighlights}
 							/>
 							{showPopup && <SendPopup setShowPopup={setShowPopup} />}
 							<QuickReaction inputFocused={inputFocused} setInputFocused={setInputFocused} sendReply={sendReply} />

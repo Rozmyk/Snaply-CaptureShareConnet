@@ -20,6 +20,7 @@ const MoreUserPosts = ({ postId }: MoreUserPostsProps) => {
 	const [userPost, setUserPost] = useState<updatedPostProps[] | null>(null)
 	const [postData, setPostData] = useState<PostProps | null>(null)
 	const [userData, setUserData] = useState<UserProps | null>(null)
+	const [noPosts, setNoPosts] = useState<boolean>(false)
 	const [loadingPost, setLoadingPost] = useState<boolean>(true)
 	const [loadingUser, setLoadingUser] = useState<boolean>(true)
 	const { ref, width } = useElementSize()
@@ -72,6 +73,9 @@ const MoreUserPosts = ({ postId }: MoreUserPostsProps) => {
 				if (posts.length > 0) {
 					setUserPost(posts)
 					setLoadingPost(false)
+					setNoPosts(false)
+				} else {
+					setNoPosts(true)
 				}
 			} catch (error) {
 				console.error(error)
@@ -84,34 +88,36 @@ const MoreUserPosts = ({ postId }: MoreUserPostsProps) => {
 		}
 	}, [postData, postId])
 	return (
-		<Container>
-			<Divider m='xl'></Divider>
-			{!loadingUser && userData && (
-				<Text mb='lg' fw={600} fz={14} color={dark ? '#a8a8a8' : '#737373'}>
-					More posts from{' '}
-					<Link
-						href={`/profile/${userData.username.toLowerCase()}`}
-						style={{ color: dark ? 'white' : 'black', textTransform: 'lowercase', textDecoration: 'none' }}>
-						{userData.username}
-					</Link>
-				</Text>
-			)}
-			<Container ref={ref}>
-				{!loadingPost && userPost && userPost.length > 0 ? (
-					<Grid>
-						{userPost.map(post => {
-							return (
-								<Grid.Col span={4} key={post.id}>
-									<SinglePostCard {...post} size={imagePostWidth} />
-								</Grid.Col>
-							)
-						})}
-					</Grid>
-				) : (
-					<MorePostLoading />
+		!noPosts && (
+			<Container>
+				<Divider m='xl'></Divider>
+				{!loadingUser && userData && (
+					<Text mb='lg' fw={600} fz={14} color={dark ? '#a8a8a8' : '#737373'}>
+						More posts from{' '}
+						<Link
+							href={`/profile/${userData.username.toLowerCase()}`}
+							style={{ color: dark ? 'white' : 'black', textTransform: 'lowercase', textDecoration: 'none' }}>
+							{userData.username}
+						</Link>
+					</Text>
 				)}
+				<Container ref={ref}>
+					{!loadingPost && userPost && userPost.length > 0 ? (
+						<Grid>
+							{userPost.map(post => {
+								return (
+									<Grid.Col span={4} key={post.id}>
+										<SinglePostCard {...post} size={imagePostWidth} />
+									</Grid.Col>
+								)
+							})}
+						</Grid>
+					) : (
+						<MorePostLoading />
+					)}
+				</Container>
 			</Container>
-		</Container>
+		)
 	)
 }
 export default MoreUserPosts

@@ -39,7 +39,7 @@ const SingleHighlight = ({
 	handleRedirect,
 }: SingleHighlightProps) => {
 	const currentHighlight: SingleSavedStoryProps = data[dataIndex]
-	const [updatedHighlights, setUpdatedHighlights] = useState<updatedStoryProps[] | null>(null)
+	const [updatedHighlights, setUpdatedHighlights] = useState<any>(null)
 	const [userData, setUserData] = useState<UserProps | null>(null)
 	const [userLoading, setUserLoading] = useState(true)
 	const [highlightsLoading, setHighlightsLoading] = useState(true)
