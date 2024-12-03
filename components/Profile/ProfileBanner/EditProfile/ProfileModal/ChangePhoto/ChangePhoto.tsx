@@ -30,7 +30,7 @@ const ChangePhoto = ({ temporaryPhoto, setTemporaryPhoto }: CustomPhotoProps) =>
 					sx={{ width: 56, height: 56, borderRadius: '50%' }}
 					src={temporaryPhoto ? URL.createObjectURL(temporaryPhoto) : userPhoto}></Avatar>
 				<Flex direction='column'>
-					<Text fw={700} fz={16}>
+					<Text fw={700} fz={16} color={dark ? 'white' : 'black'}>
 						{username}
 					</Text>
 					<Text fz={14} color='#737373'>

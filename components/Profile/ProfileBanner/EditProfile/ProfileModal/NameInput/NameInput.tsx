@@ -11,7 +11,13 @@ const NameInput = ({ dark, nameValue, setNameValue }: NameInputProps) => {
 	return (
 		<Flex direction='column' gap='sm' mb='md' sx={{ position: 'relative' }}>
 			<Flex direction='column' gap='sm'>
-				<Text fw={700}>Name</Text>
+				<Text fw={700} color={dark ? 'white' : 'black'}>
+					Name
+				</Text>
+				<Text c='dimmed' fz='xs'>
+					Help people discover your account by using the name you`&apos;re know by: either your full name, nickname, or
+					business name.
+				</Text>
 				<Flex
 					direction='column'
 					sx={{

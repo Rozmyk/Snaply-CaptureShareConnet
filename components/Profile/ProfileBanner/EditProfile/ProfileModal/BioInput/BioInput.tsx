@@ -9,7 +9,12 @@ const BioInput = ({ bioValue, setBioValue, dark }: BioInputProps) => {
 	return (
 		<Flex direction='column' gap='sm' mb='md' sx={{ position: 'relative' }}>
 			<Flex direction='column' gap='sm'>
-				<Text fw={700}>Bio</Text>
+				<Text fw={700} color={dark ? 'white' : 'black'}>
+					Bio
+				</Text>
+				<Text c='dimmed' fz='xs'>
+					Write a short description about yourself, your interests, or your work to let others know more about you.
+				</Text>
 				<Flex
 					direction='column'
 					sx={{

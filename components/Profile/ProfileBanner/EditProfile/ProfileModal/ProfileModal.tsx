@@ -45,7 +45,7 @@ const ProfileModal = ({
 	return (
 		<Modal.Root radius='lg' centered opened={opened} onClose={closeModal}>
 			<Modal.Overlay />
-			<Modal.Content sx={{ backgroundColor: dark ? '#000101' : '#fefffe' }}>
+			<Modal.Content sx={{ backgroundColor: dark ? '#262727' : '#fefffe' }}>
 				<ModalHeader centerText='Edit profile' closeButton closeButtonAction={closeModal} />
 				<Modal.Body>
 					<ScrollArea.Autosize mah={400} offsetScrollbars>
