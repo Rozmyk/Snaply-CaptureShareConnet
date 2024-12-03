@@ -19,8 +19,8 @@ const AddStory = () => {
 	const session = useSession()
 	const userId = session?.data?.user?.id
 
-	const uploadFile = async (dataURL: string) => {
-		if (!dataURL) {
+	const uploadFile = async (file: File | null) => {
+		if (!file) {
 			return null
 		}
 
@@ -28,10 +28,7 @@ const AddStory = () => {
 			const imageId = uuidv4()
 			const imageRef = ref(storage, `stories/${imageId}.png`)
 
-			const response = await fetch(dataURL)
-			const blob = await response.blob()
-
-			const snapshot = await uploadBytes(imageRef, blob)
+			const snapshot = await uploadBytes(imageRef, file)
 			const url = await getDownloadURL(snapshot.ref)
 
 			return url
@@ -47,7 +44,7 @@ const AddStory = () => {
 		setFile(null)
 	}
 
-	const addStory = async (data: string) => {
+	const addStory = async () => {
 		setIsImageUploading(true)
 		try {
 			if (userId) {
@@ -55,7 +52,7 @@ const AddStory = () => {
 				const newStory = {
 					addedBy: userId,
 					createdAt: new Date(),
-					image: await uploadFile(data),
+					image: await uploadFile(file),
 					viewedBy: [],
 				}
 				await addDoc(storyRef, newStory)
