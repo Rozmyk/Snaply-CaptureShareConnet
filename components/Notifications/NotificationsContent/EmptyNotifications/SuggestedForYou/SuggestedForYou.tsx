@@ -48,7 +48,7 @@ const SuggestedForYou = ({ maxHeight }: { maxHeight: number }) => {
 		}
 	}, [userId, username])
 	return (
-		<ScrollArea h={maxHeight}>
+		<ScrollArea h={maxHeight} p='sm'>
 			<Text fw={600} mb='lg' color={dark ? 'white' : 'black'}>
 				Suggested for you
 			</Text>
