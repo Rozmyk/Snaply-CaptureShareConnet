@@ -65,6 +65,7 @@ const SwitchContent = () => {
 					'.mantine-Select-item': {
 						fontSize: '15px',
 						fontWeight: 700,
+						color: dark ? 'white' : 'black',
 					},
 					'.mantine-Select-item[data-selected]': {
 						backgroundColor: dark ? 'black' : 'white',
