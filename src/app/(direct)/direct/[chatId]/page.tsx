@@ -1,3 +1,4 @@
+'use client'
 import DirectPageContainer from '../../../../../components/Direct/DirectPageContainer/DirectPageContainer'
 import DirectMobile from '../../../../../components/Direct/DirectMobile/DirectMobile'
 import { useMediaQuery } from '@mantine/hooks'
@@ -8,14 +9,8 @@ interface PageProps {
 	}
 }
 
-export default async function Page({ params }: PageProps) {
+export default function Page({ params }: PageProps) {
 	const { chatId } = params
-
-	const chatExists = true
-
-	if (!chatExists) {
-		throw new Error('Chat not found')
-	}
 
 	const isSmallScreen = useMediaQuery('(max-width: 720px)')
 
