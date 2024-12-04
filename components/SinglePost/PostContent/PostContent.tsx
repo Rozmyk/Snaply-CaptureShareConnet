@@ -62,7 +62,7 @@ const PostContent = ({ image, addLikeToPost, isLiked }: PostContentProps) => {
 				)}
 			</AnimatePresence>
 			<div style={{ position: 'relative', width: '100%', height: 450 }}>
-				<Image fill alt='user photo' ref={ref} src={image} />
+				<Image layout='fill' objectFit='cover' objectPosition='center' alt='user photo' ref={ref} src={image} />
 			</div>
 		</Box>
 	)
