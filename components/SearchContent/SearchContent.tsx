@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect, Dispatch, SetStateAction } from 'react'
-import { Flex } from '@mantine/core'
+import { Flex, useMantineColorScheme } from '@mantine/core'
 import { useElementSize } from '@mantine/hooks'
 import RecentUsers from './RecentUsers/RecentUsers'
 import FilteredUsersList from './FilteredUsersList/FilteredUsersList'
@@ -21,7 +21,8 @@ const SearchContent = ({ opened, setOpened, inputValue, setInputValue }: SearchC
 	const [filteredUsers, setFilteredUsers] = useState<UserProps[]>([])
 	const [scrollAreaHeight, setScrollAreaHeight] = useState<number>(0)
 	const { ref: containerRef, height: containerHeight } = useElementSize()
-
+	const { colorScheme } = useMantineColorScheme()
+	const dark = colorScheme === 'dark'
 	const [recentUsers, setRecentUsers] = useState<UserProps[]>(() => {
 		const savedUsers = localStorage.getItem('recentUsers')
 		return savedUsers ? (JSON.parse(savedUsers) as UserProps[]) : []
@@ -101,7 +102,7 @@ const SearchContent = ({ opened, setOpened, inputValue, setInputValue }: SearchC
 	}, [recentUsers])
 
 	return (
-		<Flex h='100%' direction='column' ref={containerRef}>
+		<Flex h='100%' direction='column' ref={containerRef} style={{ backgroundColor: dark ? 'black' : 'white' }}>
 			{chooseComponentToRender()}
 		</Flex>
 	)
