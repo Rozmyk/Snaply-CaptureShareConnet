@@ -1,6 +1,6 @@
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import GoogleProvider from 'next-auth/providers/google'
+
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '@/app/firebase'
 import { fetchUserData } from '../utils/user/fetchUserData'
@@ -8,10 +8,6 @@ import { fetchUserDataByEmail } from '../utils/user/fetchUserDataByEmail'
 
 export const authOptions = {
 	providers: [
-		GoogleProvider({
-			clientId: process.env.GOOGLE_CLIENT_ID!,
-			clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-		}),
 		CredentialsProvider({
 			name: 'Credentials',
 			credentials: {},
@@ -86,4 +82,3 @@ export const authOptions = {
 }
 
 export default NextAuth(authOptions)
-

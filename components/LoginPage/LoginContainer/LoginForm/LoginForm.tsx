@@ -1,9 +1,9 @@
-import { Flex, Stack, PasswordInput, TextInput, Divider, Center, Anchor, Text, Box } from '@mantine/core'
+import { Flex, Stack, PasswordInput, TextInput, Anchor, Text, Box } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import logoBlack from '../../../../public/logoBlack.svg'
 import { signIn } from 'next-auth/react'
 import Image from 'next/image'
-import GoogleButton from '../../../GoogleButton/GoogleButton'
+
 import CustomButton from '../../../CustomButton/CustomButton'
 const LoginForm = () => {
 	const form = useForm({
@@ -70,15 +70,6 @@ const LoginForm = () => {
 						</CustomButton>
 					</Box>
 
-					<Divider
-						sx={{ fontWeight: 600, color: '#737373', width: '100%' }}
-						my='xs'
-						label='OR'
-						labelPosition='center'
-					/>
-					<Center mt='sm'>
-						<GoogleButton />
-					</Center>
 					<Anchor href='/forgotPassword' mb='md' align='center' color='#00376B' size='xs'>
 						Forgot password?
 					</Anchor>
