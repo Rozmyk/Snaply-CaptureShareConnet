@@ -1,19 +1,21 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { Flex, Text, Center, Loader } from '@mantine/core'
+import { Flex, Text, Center, Loader, useMantineColorScheme, ScrollArea } from '@mantine/core'
 import { useRouter } from 'next/navigation'
 import NewUserCard from '../../../../Home/NewUsers/NewUserCard/NewUserCard'
 import CustomButtonTransparent from '../../../../CustomButton/CustomButtonTransparent/CustomButtonTransparent'
 import { useSession } from 'next-auth/react'
 import { UserProps } from '../../../../../types'
 import { getAllUsers } from '../../../../../utils/getAllUsers'
-const SuggestedForYou = () => {
+const SuggestedForYou = ({ maxHeight }: { maxHeight: number }) => {
 	const [notFollowedUsers, setNotFollowedusers] = useState<UserProps[]>([])
 	const [loading, setLoading] = useState<boolean>(true)
 	const router = useRouter()
 	const session = useSession()
 	const userId = session?.data?.user?.id
 	const username = session?.data?.user?.username
+	const { colorScheme } = useMantineColorScheme()
+	const dark = colorScheme === 'dark'
 
 	useEffect(() => {
 		if (userId) {
@@ -46,8 +48,8 @@ const SuggestedForYou = () => {
 		}
 	}, [userId, username])
 	return (
-		<Flex direction='column' p='sm'>
-			<Text fw={600} mb='lg'>
+		<ScrollArea h={maxHeight}>
+			<Text fw={600} mb='lg' color={dark ? 'white' : 'black'}>
 				Suggested for you
 			</Text>
 			<Flex direction='column'>
@@ -69,7 +71,7 @@ const SuggestedForYou = () => {
 				}}>
 				See All Suggestions
 			</CustomButtonTransparent>
-		</Flex>
+		</ScrollArea>
 	)
 }
 
