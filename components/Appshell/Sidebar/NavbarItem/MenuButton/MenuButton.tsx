@@ -3,6 +3,7 @@ import { IconSettings, IconBaselineDensityMedium, IconBookmark, IconSun, IconMoo
 import { signOut } from 'next-auth/react'
 import NavbarItemDesktop from '../NavbarItemDesktop'
 import NavbarItemTablet from '../NavbarItemTablet'
+
 interface MenuButtonProps {
 	variant: string
 }
@@ -10,7 +11,7 @@ function MenuButton({ variant }: MenuButtonProps) {
 	const { colorScheme, toggleColorScheme } = useMantineColorScheme()
 	const dark = colorScheme === 'dark'
 	const handleLogout = async () => {
-		signOut()
+		signOut({ callbackUrl: '/' })
 	}
 
 	return (
