@@ -36,7 +36,7 @@ const Footer = ({ compact }: FooterInterface) => {
 				})}
 			</Group>
 			<Group>
-				<Anchor color={colorScheme == 'dark' ? '#737272' : '#C7c7c7'} size='12px'>
+				<Anchor href='/' color={colorScheme == 'dark' ? '#737272' : '#C7c7c7'} size='12px'>
 					© {year} Snaply
 				</Anchor>
 				<Anchor href='https://github.com/Rozmyk' color={colorScheme == 'dark' ? '#737272' : '#C7c7c7'} size='12px'>
