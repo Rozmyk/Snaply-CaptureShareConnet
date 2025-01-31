@@ -3,14 +3,15 @@ import { useForm } from '@mantine/form'
 import logoBlack from '../../../../public/logoBlack.svg'
 import { signIn } from 'next-auth/react'
 import Image from 'next/image'
-
+import { useState, useEffect } from 'react'
 import CustomButton from '../../../CustomButton/CustomButton'
 const LoginForm = () => {
+	const [errorMessage, setErrorMessage] = useState('')
+
 	const form = useForm({
 		initialValues: {
 			email: '',
 			password: '',
-			errorText: '',
 		},
 
 		validate: {
@@ -18,19 +19,30 @@ const LoginForm = () => {
 			password: val => (val.length <= 6 ? 'Password should include at least 6 characters' : null),
 		},
 	})
-	const singInUser = async () => {
+	const signInUser = async () => {
 		const email = form.values.email
 		const password = form.values.password
+
 		try {
-			await signIn('credentials', { email, password })
-			console.log(signIn)
+			const result = await signIn('credentials', { redirect: false, email, password })
+
+			if (result?.error) {
+				setErrorMessage('Invalid email or password.')
+				console.error('Login failed:', result.error)
+			} else {
+				console.log('Login successful')
+			}
 		} catch (error) {
-			console.log(error)
+			console.error('Unexpected error:', error)
+			setErrorMessage('Wystąpił błąd. Spróbuj ponownie.')
 		}
 	}
+	useEffect(() => {
+		setErrorMessage('')
+	}, [form.values])
 	return (
 		<Box sx={{ maxWidth: 350 }}>
-			<form onSubmit={form.onSubmit(singInUser)}>
+			<form onSubmit={form.onSubmit(signInUser)}>
 				<Flex mb='lg' p='xl' direction='column' sx={{ border: '1px solid #DBDBDB' }}>
 					<Flex direction='column' p='md' justify='center' align='center'>
 						<Image src={logoBlack} width={100} alt='Snaply logo' />
@@ -61,6 +73,11 @@ const LoginForm = () => {
 							radius='md'
 						/>
 					</Stack>
+					{errorMessage && (
+						<Text fz='sm' color='red' align='center' mb='xs' mt='xs'>
+							{errorMessage}
+						</Text>
+					)}
 					<Box mt='xl' mb='xl' w='100%'>
 						<CustomButton
 							fullWidth
