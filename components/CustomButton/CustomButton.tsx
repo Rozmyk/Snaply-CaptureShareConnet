@@ -1,13 +1,15 @@
 import { Button } from '@mantine/core'
-import { CSSProperties } from 'react'
+import { CSSProperties, ReactNode, MouseEvent } from 'react'
+
 interface CustomButtonProps {
-	children: string
-	onClick?: (e: any) => void
+	children: ReactNode
+	onClick?: (e: MouseEvent<HTMLButtonElement>) => void
 	disabled?: boolean
 	submitType?: boolean
 	style?: CSSProperties
 	fullWidth?: boolean
 }
+
 const CustomButton = ({ children, onClick, disabled, submitType, fullWidth, style }: CustomButtonProps) => {
 	return (
 		<Button
