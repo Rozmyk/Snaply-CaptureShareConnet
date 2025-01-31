@@ -29,7 +29,7 @@ const Footer = ({ compact }: FooterInterface) => {
 			<Group spacing={compact ? 'xs' : 'xl'} position={compact ? 'left' : 'center'}>
 				{fakeAnchors.map(fakeAnchor => {
 					return (
-						<Anchor key={fakeAnchor} color={colorScheme == 'dark' ? '#737272' : '#C7c7c7'} size='12px'>
+						<Anchor key={fakeAnchor} href='/' color={colorScheme == 'dark' ? '#737272' : '#C7c7c7'} size='12px'>
 							{fakeAnchor}
 						</Anchor>
 					)
