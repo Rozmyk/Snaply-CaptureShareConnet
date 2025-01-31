@@ -1,13 +1,14 @@
-import { Flex, Stack, PasswordInput, TextInput, Anchor, Text, Box } from '@mantine/core'
+import { Flex, Stack, PasswordInput, TextInput, Anchor, Text, Box, Loader, Center } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import logoBlack from '../../../../public/logoBlack.svg'
 import { signIn } from 'next-auth/react'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import CustomButton from '../../../CustomButton/CustomButton'
+
 const LoginForm = () => {
 	const [errorMessage, setErrorMessage] = useState('')
-
+	const [loading, setLoading] = useState(false)
 	const form = useForm({
 		initialValues: {
 			email: '',
@@ -24,12 +25,15 @@ const LoginForm = () => {
 		const password = form.values.password
 
 		try {
+			setLoading(true)
 			const result = await signIn('credentials', { redirect: false, email, password })
 
 			if (result?.error) {
+				setLoading(false)
 				setErrorMessage('Invalid email or password.')
 				console.error('Login failed:', result.error)
 			} else {
+				setLoading(false)
 				console.log('Login successful')
 			}
 		} catch (error) {
@@ -83,7 +87,13 @@ const LoginForm = () => {
 							fullWidth
 							submitType={true}
 							disabled={form.values.email.trim() == '' || form.values.password.trim() == ''}>
-							Log in
+							{loading ? (
+								<Center>
+									<Loader size='xs' color='white' />{' '}
+								</Center>
+							) : (
+								'Log in'
+							)}
 						</CustomButton>
 					</Box>
 
