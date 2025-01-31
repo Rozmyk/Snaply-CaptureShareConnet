@@ -70,17 +70,19 @@ const DetailsHeader = ({
 						position: 'relative',
 						backgroundColor: dark ? 'black' : 'white',
 					}}>
-					<Flex justify='space-between' align='center' w='100%'>
-						<UserInfo username={username} image={image} dark={dark} />
-						{userId && (
-							<FollowButton
-								isFollowed={isFollowed}
-								userId={userId}
-								addedBy={addedBy}
-								dark={dark}
-								addFollow={addFollow}
-							/>
-						)}
+					<Flex justify='space-between' align='flex-start' w='100%'>
+						<Flex justify='center' align='center' gap='sm'>
+							<UserInfo username={username} image={image} dark={dark} />
+							{userId && (
+								<FollowButton
+									isFollowed={isFollowed}
+									userId={userId}
+									addedBy={addedBy}
+									dark={dark}
+									addFollow={addFollow}
+								/>
+							)}
+						</Flex>
 						<PostModalSettings
 							addedBy={addedBy}
 							postId={postId}
