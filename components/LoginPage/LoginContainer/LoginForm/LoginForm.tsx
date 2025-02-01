@@ -38,7 +38,7 @@ const LoginForm = () => {
 			}
 		} catch (error) {
 			console.error('Unexpected error:', error)
-			setErrorMessage('Wystąpił błąd. Spróbuj ponownie.')
+			setErrorMessage('An error has occurred. Try again.')
 		}
 	}
 	useEffect(() => {
