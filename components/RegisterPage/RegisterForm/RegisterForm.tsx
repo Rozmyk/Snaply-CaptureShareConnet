@@ -59,10 +59,10 @@ const RegisterForm = () => {
 		return isUsernameTaken
 	}
 	const createNewUser = async () => {
-		const email = form.values.email
+		const email = form.values.email.toLowerCase()
 		const password = form.values.password
-		const username = form.values.username
-		const name = form.values.name
+		const username = form.values.username.toLowerCase()
+		const name = form.values.name.toLowerCase()
 		setLoading(true)
 		let user = {
 			id: '',
