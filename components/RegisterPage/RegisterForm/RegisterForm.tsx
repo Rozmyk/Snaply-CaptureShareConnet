@@ -1,7 +1,7 @@
 'use client'
 import { signIn } from 'next-auth/react'
 import { useForm } from '@mantine/form'
-import { Box, Text, Stack, TextInput, PasswordInput } from '@mantine/core'
+import { Box, Text, Stack, TextInput, PasswordInput, Loader, Center } from '@mantine/core'
 import CustomButton from '../../CustomButton/CustomButton'
 import { useState } from 'react'
 import { createUser } from '../../../utils/user/createUser'
@@ -11,6 +11,7 @@ import { auth } from '../../../src/app/firebase'
 import { db } from '../../../src/app/firebase'
 import setUpErrorMessage from '../../../utils/errorUtils'
 const RegisterForm = () => {
+	const [loading, setLoading] = useState(false)
 	const [errorText, setErrorText] = useState('')
 	const form = useForm({
 		initialValues: {
@@ -62,6 +63,7 @@ const RegisterForm = () => {
 		const password = form.values.password
 		const username = form.values.username
 		const name = form.values.name
+		setLoading(true)
 		let user = {
 			id: '',
 			image: '',
@@ -95,6 +97,7 @@ const RegisterForm = () => {
 					redirect: true,
 					callbackUrl: '/',
 				})
+				setLoading(false)
 			} catch (error) {
 				let errorMessage
 
@@ -107,9 +110,11 @@ const RegisterForm = () => {
 				}
 
 				setErrorText(setUpErrorMessage(errorMessage))
+				setLoading(false)
 			}
 		} else {
 			setErrorText("This username isn't available. Please try another.")
+			setLoading(false)
 		}
 	}
 	const inputStyle = {
@@ -152,7 +157,13 @@ const RegisterForm = () => {
 						form.values.username.trim() == ''
 					}
 					fullWidth>
-					Next
+					{loading ? (
+						<Center>
+							<Loader size='xs' color='white' />{' '}
+						</Center>
+					) : (
+						'Sign in'
+					)}
 				</CustomButton>
 				{errorText !== '' && (
 					<Text m='xl' fz='sm' align='center' color='#ED4956'>
