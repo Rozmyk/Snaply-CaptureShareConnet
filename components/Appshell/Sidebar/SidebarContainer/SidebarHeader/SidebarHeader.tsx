@@ -12,7 +12,7 @@ interface SidebarHeaderProps {
 function SidebarHeader({ narrowView, dark }: SidebarHeaderProps) {
 	const router = useRouter()
 	return (
-		<Flex justify='flex-start' align='center' mb='xl' mt='xl' w='100%'>
+		<Flex justify='flex-start' align='center' mb='xl' mt='xl' w='100%' style={{ height: rem(48) }}>
 			{narrowView ? (
 				<ActionIcon
 					onClick={() => {

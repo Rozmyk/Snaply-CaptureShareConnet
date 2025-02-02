@@ -55,19 +55,19 @@ const Sidebar = () => {
 	}, [expanderActiveContent, narrowView])
 
 	return (
-		<SidebarContainer dark={dark} narrowView={narrowView} isTabletScreen={isTabletScreen}>
+		<SidebarContainer dark={dark} isTabletScreen={isTabletScreen}>
 			<Flex ref={scrollAreaRef} sx={{ position: 'fixed', bottom: 0, left: 0, zIndex: 199 }}>
+				<SidebarMotionContainer isWindowOpen={isWindowOpen} narrowView={narrowView} dark={dark}>
+					<SidebarHeader narrowView={narrowView} dark={dark} />
+					<SidebarButtons
+						expanderActiveContent={expanderActiveContent}
+						variant={variant}
+						isWindowOpen={isWindowOpen}
+						setIsWindowOpen={setIsWindowOpen}
+						setExpanderActiveContent={setExpanderActiveContent}
+					/>
+				</SidebarMotionContainer>
 				<div ref={ref}>
-					<SidebarMotionContainer isWindowOpen={isWindowOpen} narrowView={narrowView} dark={dark}>
-						<SidebarHeader narrowView={narrowView} dark={dark} />
-						<SidebarButtons
-							expanderActiveContent={expanderActiveContent}
-							variant={variant}
-							isWindowOpen={isWindowOpen}
-							setIsWindowOpen={setIsWindowOpen}
-							setExpanderActiveContent={setExpanderActiveContent}
-						/>
-					</SidebarMotionContainer>
 					<SidebarExpander
 						isWindowOpen={isWindowOpen}
 						expanderActiveContent={expanderActiveContent}
