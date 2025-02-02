@@ -55,7 +55,7 @@ function AppShellComponent({ children }: { children: ReactNode }) {
 			} else {
 				return (
 					<AppShell
-						sx={{ position: 'relative' }}
+						sx={{ position: 'relative', maxWidth: '100vw', overflow: 'hidden' }}
 						padding={0}
 						navbar={<Sidebar />}
 						styles={theme => ({
