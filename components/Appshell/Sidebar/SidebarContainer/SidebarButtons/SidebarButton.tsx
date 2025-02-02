@@ -10,12 +10,19 @@ import MenuButton from '../../NavbarItem/MenuButton/MenuButton'
 import { useRouter } from 'next/navigation'
 import { Dispatch, SetStateAction } from 'react'
 interface SidebarButtonsProps {
+	expanderActiveContent: string
 	variant: string
 	isWindowOpen: boolean
 	setIsWindowOpen: Dispatch<SetStateAction<boolean>>
 	setExpanderActiveContent: Dispatch<SetStateAction<string>>
 }
-const SidebarButtons = ({ variant, isWindowOpen, setIsWindowOpen, setExpanderActiveContent }: SidebarButtonsProps) => {
+const SidebarButtons = ({
+	variant,
+	isWindowOpen,
+	setIsWindowOpen,
+	setExpanderActiveContent,
+	expanderActiveContent,
+}: SidebarButtonsProps) => {
 	const router = useRouter()
 	return (
 		<Flex h='100%' w='100%' direction='column' justify='space-between' align='center'>
@@ -24,9 +31,12 @@ const SidebarButtons = ({ variant, isWindowOpen, setIsWindowOpen, setExpanderAct
 				<SearchButton
 					variant={variant}
 					onClick={() => {
-						setIsWindowOpen(false)
-						setExpanderActiveContent('search')
-						setIsWindowOpen(true)
+						if (isWindowOpen && expanderActiveContent === 'search') {
+							setIsWindowOpen(false)
+						} else {
+							setExpanderActiveContent('search')
+							setIsWindowOpen(true)
+						}
 					}}
 				/>
 				<ExploreButton variant={variant} />
@@ -40,9 +50,12 @@ const SidebarButtons = ({ variant, isWindowOpen, setIsWindowOpen, setExpanderAct
 					variant={variant}
 					sidebarStatus={isWindowOpen}
 					onClick={() => {
-						setIsWindowOpen(false)
-						setExpanderActiveContent('notifications')
-						setIsWindowOpen(true)
+						if (isWindowOpen && expanderActiveContent === 'notifications') {
+							setIsWindowOpen(false)
+						} else {
+							setExpanderActiveContent('notifications')
+							setIsWindowOpen(true)
+						}
 					}}
 				/>
 				<CreatePost variant={variant} />

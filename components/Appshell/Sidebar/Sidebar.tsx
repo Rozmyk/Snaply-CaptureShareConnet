@@ -46,6 +46,7 @@ const Sidebar = () => {
 		isTabletScreen,
 		expanderActiveContent,
 		shouldSidebarBeExpanded,
+		isWindowOpen,
 	])
 
 	useEffect(() => {
@@ -60,6 +61,7 @@ const Sidebar = () => {
 					<SidebarMotionContainer isWindowOpen={isWindowOpen} narrowView={narrowView} dark={dark}>
 						<SidebarHeader narrowView={narrowView} dark={dark} />
 						<SidebarButtons
+							expanderActiveContent={expanderActiveContent}
 							variant={variant}
 							isWindowOpen={isWindowOpen}
 							setIsWindowOpen={setIsWindowOpen}
