@@ -5,10 +5,11 @@ import { signIn } from 'next-auth/react'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import CustomButton from '../../../CustomButton/CustomButton'
-
+import { useRouter } from 'next/navigation'
 const LoginForm = () => {
 	const [errorMessage, setErrorMessage] = useState('')
 	const [loading, setLoading] = useState(false)
+	const router = useRouter()
 	const form = useForm({
 		initialValues: {
 			email: '',
@@ -34,6 +35,7 @@ const LoginForm = () => {
 				console.error('Login failed:', result.error)
 			} else {
 				setLoading(false)
+				router.push('/')
 				console.log('Login successful')
 			}
 		} catch (error) {
