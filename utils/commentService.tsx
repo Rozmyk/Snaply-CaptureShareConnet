@@ -23,10 +23,9 @@ export default {
 					const userData = await fetchUserData(commentData.user)
 					if (userData) {
 						commentData.userDetails = userData
+						comments.push(commentData)
 					}
 				}
-
-				comments.push(commentData)
 
 				lastKey = commentData.createdAt
 			}
@@ -56,10 +55,10 @@ export default {
 					const userData = await fetchUserData(commentData.user)
 					if (userData) {
 						commentData.userDetails = userData
+						comments.push(commentData)
 					}
 				}
 
-				comments.push(commentData)
 				lastKey = commentData.createdAt
 			}
 
