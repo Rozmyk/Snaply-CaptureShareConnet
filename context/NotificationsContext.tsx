@@ -52,8 +52,8 @@ export function NotificationsProvider({ children }: NotificationsProviderProps) 
 					notificationData.id = notificationDoc.id
 					if (userData) {
 						notificationData.user = userData
+						notifications.push(notificationData)
 					}
-					notifications.push(notificationData)
 				}
 
 				setNotificationsData(notifications)
