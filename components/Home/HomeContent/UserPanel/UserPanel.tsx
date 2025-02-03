@@ -18,7 +18,7 @@ const UserPanel = () => {
 						<Text fz={14} fw={600} m={0} p={0} color={dark ? 'white' : '#f5f5f'}>
 							{username}
 						</Text>
-						<Text c={dark ? '#a8a8a8' : '#737373'} fz={14} m={0} p={0}>
+						<Text sx={{ textTransform: 'capitalize' }} c={dark ? '#a8a8a8' : '#737373'} fz={14} m={0} p={0}>
 							{name}
 						</Text>
 					</Flex>

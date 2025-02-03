@@ -53,7 +53,7 @@ const NewUserCard = ({ image, username, id, name, filledButton }: UserCardProps)
 							<Text fz='sm' sx={{ margin: 'none' }} color={dark ? 'white' : 'black'} fw={600}>
 								{name}
 							</Text>
-							<Text color='dark.2' fz={12}>
+							<Text sx={{ textTransform: 'capitalize' }} color='dark.2' fz={12}>
 								{username}
 							</Text>
 						</Flex>
