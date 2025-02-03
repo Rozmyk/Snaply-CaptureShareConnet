@@ -11,7 +11,7 @@ const ProfileDescription = ({ name, description, descriptionLink }: ProfileDescr
 	const dark = colorScheme === 'dark'
 	return (
 		<Flex direction='column' gap={0} justify='flex-start' align='flex-start'>
-			<Text fz={14} fw={600} color={dark ? 'white' : 'black'}>
+			<Text fz={14} sx={{ textTransform: 'capitalize' }} fw={600} color={dark ? 'white' : 'black'}>
 				{name}
 			</Text>
 			<Text fz={14} fw={500} maw='100%' w='100%' color={dark ? 'white' : 'black'}>
