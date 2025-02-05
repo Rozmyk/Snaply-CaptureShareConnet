@@ -8,8 +8,8 @@ const NoPost = () => {
 	const dark = colorScheme === 'dark'
 	return (
 		<Flex direction='column' justify='center' align='center'>
-			<IconFileAlert size={70} stroke={1} />
-			<Text fz={20} fw={500}>
+			<IconFileAlert size={70} color={dark ? 'white' : 'black'} stroke={1} />
+			<Text fz={20} fw={500} color={dark ? 'white' : 'black'}>
 				Something went wrong
 			</Text>
 			<Text mb='xl' sx={{ color: dark ? '#a8a8a8' : '#737373' }} fz={14}>
