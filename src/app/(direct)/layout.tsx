@@ -13,7 +13,7 @@ export default function DirectLayout({ children }: { children: React.ReactNode }
 	return isSmallScreen ? (
 		<div>{children}</div>
 	) : (
-		<Grid h='99vh' w='100%' m='0' p='0' mah='100vh'>
+		<Grid h='99vh' w='100%' m='0' p='0' mah='100vh' pl={!isSmallScreen ? 75 : 0}>
 			<Grid.Col
 				span={isXXlScreen ? 3 : isXLScreen ? 4 : 5}
 				p={0}

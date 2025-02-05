@@ -55,7 +55,7 @@ const Sidebar = () => {
 	}, [expanderActiveContent, narrowView])
 
 	return (
-		<SidebarContainer dark={dark} isTabletScreen={isTabletScreen}>
+		<SidebarContainer shouldSidebarBeExpanded={shouldSidebarBeExpanded} dark={dark}>
 			<Flex ref={scrollAreaRef} sx={{ position: 'fixed', bottom: 0, left: 0, zIndex: 199 }}>
 				<SidebarMotionContainer isWindowOpen={isWindowOpen} narrowView={narrowView} dark={dark}>
 					<SidebarHeader narrowView={narrowView} dark={dark} />
