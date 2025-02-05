@@ -81,7 +81,7 @@ const InputMention = ({
 			},
 		},
 	}
-	console.log(users)
+
 	function findPostLengthById(id: string | number) {
 		const tag = tags.find(tag => tag.id === id)
 		return tag ? tag.postLength : null
@@ -125,7 +125,7 @@ const InputMention = ({
 				)}
 			/>
 			<Mention
-				displayTransform={(id, display) => `#${display}`}
+				displayTransform={(id, display) => `${display}`}
 				onAdd={(id, display) => {
 					setMentionedTags(prevArray => [...prevArray, `#${display}`])
 				}}
