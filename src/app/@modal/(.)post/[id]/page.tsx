@@ -1,13 +1,14 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { Modal, CloseButton, ActionIcon, useMantineColorScheme } from '@mantine/core'
+import { Modal, ActionIcon, useMantineColorScheme } from '@mantine/core'
 import { getPostData } from '../../../../../utils/getPostData'
 import { fetchUserData } from '../../../../../utils/user/fetchUserData'
 import DetailsPostModal from '../../../../../components/DetailsPost/DetailsPostModal/DetailsPostModal'
 import { IconX } from '@tabler/icons-react'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import { DescriptionDataProps, UserProps, PostProps } from '../../../../../types'
 export default function PhotoModal({ params: { id: postId } }: { params: { id: string } }) {
+	const [showModal, setShowModal] = useState<boolean>(true)
 	const [postData, setPostData] = useState<PostProps | null>(null)
 	const [descriptionData, setDescriptionData] = useState<DescriptionDataProps | null>(null)
 	const [userData, setUserData] = useState<UserProps | null>(null)
@@ -15,10 +16,18 @@ export default function PhotoModal({ params: { id: postId } }: { params: { id: s
 	const router = useRouter()
 	const { colorScheme } = useMantineColorScheme()
 	const dark = colorScheme === 'dark'
+	const pathname = usePathname()
 
 	const onClose = () => {
 		router.back()
 	}
+	useEffect(() => {
+		if (pathname !== `/post/${postId}`) {
+			setShowModal(false)
+		} else {
+			setShowModal(true)
+		}
+	}, [pathname])
 	useEffect(() => {
 		const fetchPostData = async () => {
 			const fetchedPostData = await getPostData(postId)
@@ -49,7 +58,7 @@ export default function PhotoModal({ params: { id: postId } }: { params: { id: s
 		fetchPostData()
 	}, [postId])
 	return (
-		<Modal.Root padding={0} size='90%' opened={true} onClose={onClose}>
+		<Modal.Root padding={0} size='90%' opened={showModal} onClose={onClose}>
 			<Modal.Overlay>
 				<ActionIcon
 					onClick={e => {
