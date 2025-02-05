@@ -125,9 +125,9 @@ const InputMention = ({
 				)}
 			/>
 			<Mention
-				displayTransform={(id, display) => `${display}`}
+				displayTransform={(id, display) => `${display.toLowerCase()}`}
 				onAdd={(id, display) => {
-					setMentionedTags(prevArray => [...prevArray, `#${display}`])
+					setMentionedTags(prevArray => [...prevArray, `#${display.toLowerCase()}`])
 				}}
 				renderSuggestion={suggestion => (
 					<TagSuggestion suggestion={suggestion} postLength={findPostLengthById(suggestion.id)} dark={dark} />

@@ -30,7 +30,11 @@ const TagsContainer = ({ tag }: TagsContainerProps) => {
 				const postsRef = collection(db, 'posts')
 				const searchedTag = '#' + tag
 
-				const q = query(postsRef, where('mentionedTags', 'array-contains', searchedTag), orderBy('createdAt', 'desc'))
+				const q = query(
+					postsRef,
+					where('mentionedTags', 'array-contains', searchedTag.toLowerCase()),
+					orderBy('createdAt', 'desc')
+				)
 
 				const querySnapshot = await getDocs(q)
 
