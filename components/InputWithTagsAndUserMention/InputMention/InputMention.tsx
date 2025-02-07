@@ -125,7 +125,7 @@ const InputMention = ({
 				)}
 			/>
 			<Mention
-				displayTransform={(id, display) => `${display.toLowerCase()}`}
+				displayTransform={(id, display) => `#${display.toLowerCase()}`}
 				onAdd={(id, display) => {
 					setMentionedTags(prevArray => [...prevArray, `#${display.toLowerCase()}`])
 				}}
