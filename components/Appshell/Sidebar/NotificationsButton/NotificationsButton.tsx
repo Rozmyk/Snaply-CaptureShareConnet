@@ -79,7 +79,11 @@ const NotificationsButton = ({ variant, onClick, sidebarStatus }: NotificationsB
 						}}
 						label={
 							<TooltipComponent>
-								<Text color={colorScheme == 'dark' ? 'white' : 'black'} sx={{ display: 'inline-block' }} fz='md'>
+								<Text
+									fw={400}
+									color={colorScheme == 'dark' ? 'white' : 'black'}
+									sx={{ display: 'inline-block' }}
+									fz='md'>
 									Notifications
 								</Text>
 							</TooltipComponent>
