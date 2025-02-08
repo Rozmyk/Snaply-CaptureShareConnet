@@ -34,6 +34,7 @@ export function NotificationsProvider({ children }: NotificationsProviderProps) 
 	const [newFollows, setNewFollows] = useState(0)
 	const [newComments, setNewComments] = useState(0)
 	const [newLikes, setNewLikes] = useState(0)
+	const [isInitialLoad, setIsInitialLoad] = useState(true)
 	const session = useSession()
 	const userId = session?.data?.user?.id
 
@@ -47,7 +48,6 @@ export function NotificationsProvider({ children }: NotificationsProviderProps) 
 
 				for (const notificationDoc of notificationsSnap.docs) {
 					const notificationData = notificationDoc.data() as updatedNotificationsProps
-
 					const userData = await fetchUserData(notificationData.addedBy)
 					notificationData.id = notificationDoc.id
 					if (userData) {
@@ -60,6 +60,8 @@ export function NotificationsProvider({ children }: NotificationsProviderProps) 
 			}
 		} catch (error) {
 			console.error(error)
+		} finally {
+			setIsInitialLoad(false)
 		}
 	}
 
@@ -72,7 +74,6 @@ export function NotificationsProvider({ children }: NotificationsProviderProps) 
 		setNewComments(0)
 		setNewLikes(0)
 		setNewFollows(0)
-
 		setActiveNotifications(updatedActiveNotification)
 
 		updatedActiveNotification.forEach(notification => {
@@ -87,28 +88,29 @@ export function NotificationsProvider({ children }: NotificationsProviderProps) 
 	}, [notificationsData])
 
 	useEffect(() => {
-		if (userId) {
+		if (userId && !isInitialLoad) {
 			const unsubscribe = onSnapshot(
 				query(collection(db, 'users', userId, 'notifications'), where('viewed', '==', false)),
 				async (snapshot: QuerySnapshot) => {
 					for (const change of snapshot.docChanges()) {
 						if (change.type === 'added') {
 							const newNotification = change.doc.data() as updatedNotificationsProps
-							const newNotificationId = change.doc.id
-							newNotification.id = newNotificationId
+							newNotification.id = change.doc.id
 							const addedByUser = await fetchUserData(newNotification.addedBy)
 							if (addedByUser) {
 								newNotification.user = addedByUser
 							}
-
-							setNotificationsData(prevState => [...prevState, newNotification])
+							setNotificationsData(prevState => {
+								const exists = prevState.some(notification => notification.id === newNotification.id)
+								return exists ? prevState : [...prevState, newNotification]
+							})
 						}
 					}
 				}
 			)
 			return () => unsubscribe()
 		}
-	}, [userId])
+	}, [userId, isInitialLoad])
 
 	useEffect(() => {
 		if (userId) {
@@ -117,34 +119,25 @@ export function NotificationsProvider({ children }: NotificationsProviderProps) 
 				async (snapshot: QuerySnapshot) => {
 					for (const change of snapshot.docChanges()) {
 						if (change.type === 'removed') {
-							const notificationToDelete = change.doc.id
 							setNotificationsData(prevNotificationsData =>
-								prevNotificationsData.filter(notification => notification.id !== notificationToDelete)
+								prevNotificationsData.filter(notification => notification.id !== change.doc.id)
 							)
 						} else if (change.type === 'modified') {
 							const newNotificationData = change.doc.data() as updatedNotificationsProps
-							const newNotificationId = change.doc.id
-							newNotificationData.id = newNotificationId
-
+							newNotificationData.id = change.doc.id
 							const addedByUser = await fetchUserData(newNotificationData.addedBy)
 							if (addedByUser) {
 								newNotificationData.user = addedByUser
 							}
-
-							setNotificationsData(prevNotificationsData => {
-								const updatedNotifications = prevNotificationsData.map(notification => {
-									if (notification.id === newNotificationId) {
-										return newNotificationData
-									}
-									return notification
-								})
-								return updatedNotifications
-							})
+							setNotificationsData(prevNotificationsData =>
+								prevNotificationsData.map(notification =>
+									notification.id === newNotificationData.id ? newNotificationData : notification
+								)
+							)
 						}
 					}
 				}
 			)
-
 			return () => unsubscribe()
 		}
 	}, [userId])
