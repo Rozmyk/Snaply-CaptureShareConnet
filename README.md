@@ -39,4 +39,18 @@ https://snaply-delta.vercel.app/ </br>
 4️⃣ The built-in chat allows real-time conversations </br>
 5️⃣ Notifications inform users about new interactions </br>
 
+📷 Screenshots </br>
+
+![Homepage](https://i.imgur.com/GsdUyLL.png)
+![Messages](https://i.imgur.com/uDlXlhr.png)
+![Create post](https://i.imgur.com/FAR8Cxh.png)
+![User profile](https://i.imgur.com/Sb5rcOH.png)
+![Highlights](https://i.imgur.com/vBv2Rb8.png)
+![Explore](https://i.imgur.com/86ObahM.png)
+![Single post](https://i.imgur.com/Q3xFa5w.png)
+
+
+
+
+
 The app is scalable, performance-optimized, and ready for further expansion. A perfect solution for communities looking to share content in a dynamic environment! 🔥
