@@ -4,7 +4,7 @@ Social App is a modern social networking application built with Next.js and Fire
 
 🔥 Features
 
-✅ User Authentication – Login and registration via email and password (Firebase Authentication)
+✅ User Authentication – Login and registration via email and password (Firebase Authentication) </br>
 ✅ Post Creation – Add images, descriptions, and hashtags
 ✅ Comment System – Users can comment on posts in real time
 ✅ Live Chat – Private and group conversations (Firebase Firestore + WebSockets)
