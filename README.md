@@ -3,7 +3,9 @@
 Social App is a modern social networking application built with Next.js and Firebase, enabling users to interact in real-time by posting content, adding comments, tagging users, and using hashtags. The app offers features similar to Instagram, combining an intuitive interface with high performance.</br>
 
 🌐 Live </br>
+
 Create an account and start using Snaply! </br>
+
 https://snaply-delta.vercel.app/ </br>
 
 
