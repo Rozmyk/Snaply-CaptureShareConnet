@@ -9,7 +9,7 @@ export default {
 	async postsFirstBatch() {
 		try {
 			const postsRef = collection(db, 'posts')
-			const sortedQuery = query(postsRef, orderBy('createdAt', 'desc'), limit(5))
+			const sortedQuery = query(postsRef, orderBy('createdAt', 'desc'), limit(9))
 			const data = await getDocs(sortedQuery)
 
 			let posts = []
