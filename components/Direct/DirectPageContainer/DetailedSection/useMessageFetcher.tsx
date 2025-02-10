@@ -45,6 +45,7 @@ const useMessageFetcher = (chatId: string, userId: string | undefined) => {
 								createdAt: message.createdAt || new Date(),
 								postId: message.postId || '',
 								isReplyToMessage: message.isReplyToMessage,
+								replyInfo: message.replyInfo || null,
 								sender: message.sender || '',
 								viewedBy: message.viewedBy || [],
 								reactions: message.reactions || [],
