@@ -27,7 +27,7 @@ const SharedUser = ({ user, addUser, removeUser }: ShareUserProps) => {
 				<Avatar size={44} radius={'50%'} src={user.image}></Avatar>
 
 				<Flex direction='column' justify='center' align='flex-start' gap='0'>
-					<Text align='left' fz='sm'>
+					<Text align='left' color={dark ? 'white' : 'black'} fz='sm'>
 						{user.username}
 					</Text>
 					<Text align='left' fz='sm' color={dark ? '#a8a8a8' : '#737373'}>
