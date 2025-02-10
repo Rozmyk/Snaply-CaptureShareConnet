@@ -17,8 +17,6 @@ interface updatedSingleReactionProps extends SingleReactionProps {
 	user: UserProps
 }
 function ReactToMessage({ children, messageId, chatId, reactions, isLoggedUserId }: ReactToMessageProps) {
-	console.log('Message ID:', messageId)
-
 	const [opened, { open, close }] = useDisclosure(false)
 	const [loading, setLoading] = useState(true)
 	const [updatedReactions, setUpdatedReactions] = useState<updatedSingleReactionProps[]>([])
