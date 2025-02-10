@@ -50,6 +50,11 @@ https://snaply-delta.vercel.app/ </br>
 ![Explore](https://i.imgur.com/86ObahM.png)
 ![Single post](https://i.imgur.com/Q3xFa5w.png)
 
+![Mobile homepage](https://i.imgur.com/o8XfiWk.jpeg)
+![Mobile user profile](https://i.imgur.com/6kHSHGk.jpeg)
+![Mobile messages](https://i.imgur.com/6DpjIkq.jpeg)
+![Mobile explore](https://i.imgur.com/BiGWMUb.jpeg)
+
 
 
 
