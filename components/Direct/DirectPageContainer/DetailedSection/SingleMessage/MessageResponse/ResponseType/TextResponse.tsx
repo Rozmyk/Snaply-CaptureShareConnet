@@ -15,7 +15,9 @@ const TextResponse = ({ content, maxWidth }: TextResponseProps) => {
 				maxWidth: maxWidth,
 				overflowWrap: 'break-word',
 			}}>
-			<Text fz={14}>{content}</Text>
+			<Text fz={14} color={dark ? 'white' : 'black'}>
+				{content}
+			</Text>
 		</Box>
 	)
 }

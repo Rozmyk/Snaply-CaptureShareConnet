@@ -64,7 +64,7 @@ const MessageTypeSharePost = ({ postInfo }: MessageTypeSharePostProps) => {
 				sx={{ backgroundColor: dark ? '#272726' : '#eeefee', borderRadius: '20px', cursor: 'pointer' }}>
 				<Flex justify='flex-start' align='center' p='sm' gap='sm'>
 					<Avatar size={32} src={addedByData.image} radius='50%'></Avatar>
-					<Text fw={600} fz='sm'>
+					<Text fw={600} fz='sm' color={dark ? 'white' : 'black'}>
 						{addedByData.username}
 					</Text>
 				</Flex>
