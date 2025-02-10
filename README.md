@@ -42,7 +42,7 @@ https://snaply-delta.vercel.app/ </br>
 📷 Screenshots </br>
 
 ![Homepage](https://i.imgur.com/GsdUyLL.png)
-![Messages](https://i.imgur.com/uDlXlhr.png)
+![Messages](https://i.imgur.com/eYeD0BS.png)
 ![Create post](https://i.imgur.com/FAR8Cxh.png)
 ![User profile](https://i.imgur.com/Sb5rcOH.png)
 ![Highlights](https://i.imgur.com/vBv2Rb8.png)
